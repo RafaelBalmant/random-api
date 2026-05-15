@@ -1,19 +1,28 @@
 import express from "express";
+import dotenv from "dotenv";
 import { container } from "./container.js";
 
+dotenv.config();
+
 const app = express();
+
 const PORT = process.env.PORT || 3000;
+const VERIFY_TOKEN = process.env.WEBHOOK_VERIFY_TOKEN;
 
 // Middleware
 app.use(express.json());
 
-// webhook (GET)
+// webhook (GET - validação da Meta)
 app.get("/webhook", (req, res) => {
   const mode = req.query["hub.mode"];
   const token = req.query["hub.verify_token"];
   const challenge = req.query["hub.challenge"];
 
-  return res.status(200).send(challenge);
+  if (mode === "subscribe" && token === VERIFY_TOKEN) {
+    return res.status(200).send(challenge);
+  }
+
+  return res.sendStatus(403);
 });
 
 // START SERVER
