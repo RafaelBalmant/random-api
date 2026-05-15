@@ -1,0 +1,6 @@
+node_modules
+dist
+.git
+package-lock.json
+*.sqlite
+auth_info
