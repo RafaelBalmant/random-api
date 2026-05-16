@@ -37,11 +37,7 @@ export function createMessagesRepository({ db }) {
 
     // Buscar todas as mensagens
     async findAll(limit = 100) {
-      return await db
-        .select()
-        .from(messages)
-        .orderBy(desc(messages.createdAt))
-        .limit(limit);
+      return await db.select().from(messages).orderBy(desc(messages.createdAt)).limit(limit);
     },
 
     // Atualizar mensagem
@@ -84,4 +80,3 @@ export function createMessagesRepository({ db }) {
     },
   };
 }
-

@@ -106,9 +106,7 @@
       "indexes": {
         "messages_message_id_unique": {
           "name": "messages_message_id_unique",
-          "columns": [
-            "message_id"
-          ],
+          "columns": ["message_id"],
           "isUnique": true
         }
       },

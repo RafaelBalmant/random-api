@@ -54,9 +54,11 @@ quando existir.
 O projeto usa SQLite em `database.sqlite` com Drizzle.
 
 Schema principal:
+
 - `messages`
 
 Arquivos relevantes:
+
 - `database/client.js`
 - `database/schema.js`
 - `database/messagesRepository.js`
