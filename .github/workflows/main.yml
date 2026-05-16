@@ -17,17 +17,17 @@ jobs:
         env:
           SERVER_HOST: ${{ secrets.SERVER_HOST }}
           SERVER_PORT: ${{ secrets.SERVER_PORT }}
-          SERVER_SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
           SERVER_SSH_KEY_B64: ${{ secrets.SERVER_SSH_KEY_B64 }}
         run: |
           SERVER_PORT="${SERVER_PORT:-22}"
           mkdir -p ~/.ssh
-          if [[ -n "${SERVER_SSH_KEY_B64:-}" ]]; then
-            printf '%s' "$SERVER_SSH_KEY_B64" | base64 -d > ~/.ssh/id_ed25519
-          else
-            printf '%s\n' "$SERVER_SSH_KEY" > ~/.ssh/id_ed25519
+          if [[ -z "${SERVER_SSH_KEY_B64:-}" ]]; then
+            echo "Missing secret: SERVER_SSH_KEY_B64"
+            exit 1
           fi
+          printf '%s' "$SERVER_SSH_KEY_B64" | base64 -d > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
+          ssh-keygen -lf ~/.ssh/id_ed25519
           ssh-keyscan -p "$SERVER_PORT" -H "$SERVER_HOST" >> ~/.ssh/known_hosts
 
       - name: Deploy
