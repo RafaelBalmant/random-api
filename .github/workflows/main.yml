@@ -40,6 +40,7 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 -p "$SERVER_PORT" "$SERVER_USER@$SERVER_HOST" <<'EOF'
             set -euo pipefail
 
+            git config --global --add safe.directory /var/www/apps/random-api
             cd /var/www/apps/random-api
             git fetch origin main
             git reset --hard origin/main
