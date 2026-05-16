@@ -40,6 +40,8 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 -p "$SERVER_PORT" "$SERVER_USER@$SERVER_HOST" <<'EOF'
             set -euo pipefail
 
+            mkdir -p ~/.ssh
+            ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
             git config --global --add safe.directory /var/www/apps/random-api
             cd /var/www/apps/random-api
             git fetch origin main
