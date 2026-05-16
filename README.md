@@ -1,6 +1,7 @@
 # random-api
 
-API Node.js com Express para receber webhooks do WhatsApp/Meta, armazenar mensagens em SQLite e rodar em PM2.
+API Node.js com Express para receber webhooks do WhatsApp/Meta, armazenar mensagens em
+SQLite e rodar em PM2.
 
 ## Requisitos
 
@@ -43,8 +44,10 @@ WEBHOOK_VERIFY_TOKEN=seu_token_de_verificacao
 - `GET /webhook`
 - `POST /webhook`
 
-O `GET /webhook` responde a verificacao do webhook da Meta quando `hub.mode=subscribe` e o token bate com `WEBHOOK_VERIFY_TOKEN`.
-O `POST /webhook` recebe eventos, imprime o payload no log e extrai a primeira mensagem quando existir.
+O `GET /webhook` responde a verificacao do webhook da Meta quando `hub.mode=subscribe` e o
+token bate com `WEBHOOK_VERIFY_TOKEN`.
+O `POST /webhook` recebe eventos, imprime o payload no log e extrai a primeira mensagem
+quando existir.
 
 ## Banco de dados
 
@@ -86,7 +89,8 @@ pm2 save
 
 ## Deploy automatico via GitHub Actions
 
-O repositorio possui um workflow em `.github/workflows/main.yml` que executa deploy a cada push na branch `main`.
+O repositorio possui um workflow em `.github/workflows/main.yml` que executa deploy a cada
+push na branch `main`.
 
 Secrets esperados no GitHub:
 

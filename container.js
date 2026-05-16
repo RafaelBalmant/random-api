@@ -1,4 +1,4 @@
-import * as awilix from 'awilix';
+import * as awilix from "awilix";
 import { auth } from "./services/providers/whatsapp/auth.js";
 import { whatsappChat } from "./services/providers/whatsapp/chat.js";
 import { createMessagesRepository } from "./database/messagesRepository.js";
