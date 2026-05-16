@@ -16,7 +16,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "ssh-tunnel": "ssh -R 3000:localhost:3000 root@167.172.134.231"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^7.0.0-rc11",

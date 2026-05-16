@@ -1,38 +1,28 @@
+import prettier from "eslint-plugin-prettier";
+
 export default [
   {
-    files: ["**/*.{js,mjs}"],
+    ignores: ["node_modules/**", "database/migrations/**"],
+  },
+  {
+    files: ["**/*.js"],
     languageOptions: {
-      ecmaVersion: 2020,
+      ecmaVersion: "latest",
       sourceType: "module",
       globals: {
         console: "readonly",
         process: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
       },
+    },
+    plugins: {
+      prettier,
     },
     rules: {
       "no-console": "off",
       "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-      "no-undef": "error",
-    },
-  },
-  {
-    files: ["**/*.cjs"],
-    languageOptions: {
-      ecmaVersion: 2020,
-      sourceType: "commonjs",
-      globals: {
-        console: "readonly",
-        process: "readonly",
-        __dirname: "readonly",
-        module: "readonly",
-        require: "readonly",
-        exports: "readonly",
-      },
-    },
-    rules: {
-      "no-console": "off",
-      "no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-      "no-undef": "error",
+      "prettier/prettier": "warn",
     },
   },
 ];

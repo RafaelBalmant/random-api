@@ -1,4 +1,4 @@
-import { eq, desc } from "drizzle-orm";
+import { eq, desc, sql } from "drizzle-orm";
 import { messages } from "./schema.js";
 
 export function createMessagesRepository({ db }) {
@@ -72,7 +72,7 @@ export function createMessagesRepository({ db }) {
     // Contar mensagens por telefone
     async countByPhone(phone) {
       const result = await db
-        .select({ count: db.sql`count(*)` })
+        .select({ count: sql`count(*)` })
         .from(messages)
         .where(eq(messages.phone, phone));
 
