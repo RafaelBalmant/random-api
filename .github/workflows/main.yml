@@ -40,10 +40,13 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 -p "$SERVER_PORT" "$SERVER_USER@$SERVER_HOST" <<'EOF'
             set -euo pipefail
 
+            export NVM_DIR="$HOME/.nvm"
+            export PATH="$HOME/.nvm/versions/node/v26.1.0/bin:$PATH"
             mkdir -p ~/.ssh
             ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
             git config --global --add safe.directory /var/www/apps/random-api
             cd /var/www/apps/random-api
+            node -v
             git fetch origin main
             git reset --hard origin/main
             npm ci --omit=dev
